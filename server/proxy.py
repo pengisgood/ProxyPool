@@ -17,7 +17,10 @@ async def save(proxies):
         proxy = await proxies.get()
         if proxy is None:
             break
-        print(proxy)
+        print("saving proxy: %s" % proxy)
+        if "HTTPS" in proxy.types:
+            row = '%s://%s:%d' % ("https", proxy.host, proxy.port)
+            r.set(row, 0, ex=60 * 60 * 24)
         if "HTTP" not in proxy.types:
             continue
         if "High" == proxy.types["HTTP"]:
