@@ -17,6 +17,6 @@ services:
       links:
         - redis
       ports:
-        - 8080:80
+        - 8088:80
       command:
         python3 server/proxy-server.py
